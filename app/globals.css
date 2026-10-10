@@ -11,7 +11,7 @@
   --fg: #0f1720;
 }
 
-html, body { margin: 0; background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; transition: background 0.3s ease, color 0.3s ease; }
+html, body { margin: 0; background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; overflow-x: hidden; transition: background 0.3s ease, color 0.3s ease; }
 body { font-family: var(--font-albert), system-ui, sans-serif; }
 .mono { font-family: var(--font-fragment), ui-monospace, monospace; }
 
@@ -109,18 +109,18 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-rad
 
 /* Mobile */
 @media (max-width: 767px) {
-  :root { --side: max(1.25rem, env(safe-area-inset-left, 0px)); }
-  .hero { min-height: 42rem; }
-  .base-layer { background-image: url("/images/Base_image_mobile.png"); }
-  .reveal-layer { background-image: url("/images/Reveal_image_mobile.png"); }
-  .tech-grid { opacity: 0.45; }
-  .tech-grid::before { background-size: calc(100% / 4) 100%, 100% calc(100% / 6); }
-  .tech-circle { width: 150vw; left: -76%; top: -8%; }
-  .nav-links { display: none; }
-  .title { top: 15%; width: 62%; font-size: clamp(2.7rem, 12.5vw, 3.8rem); line-height: 0.87; }
-  .intro { right: var(--side); max-width: none; bottom: calc(2rem + env(safe-area-inset-bottom, 0px)); }
-  .intro p { max-width: 20rem; font-size: 0.98rem; }
-  .tagline { top: 55%; bottom: auto; color: #fff; text-shadow: 0 1px 12px rgba(15, 23, 32, 0.55); }
+   :root { --side: max(1.25rem, env(safe-area-inset-left, 0px)); }
+   .hero { min-height: 42rem; }
+   .base-layer { background-image: url("/images/Base_image_mobile.png"); }
+   .reveal-layer { background-image: url("/images/Reveal_image_mobile.png"); }
+   .tech-grid { opacity: 0.45; }
+   .tech-grid::before { background-size: calc(100% / 4) 100%, 100% calc(100% / 6); }
+   .tech-circle { width: min(80vw, 60rem); left: 10%; top: -20%; }
+   .nav-links { display: none; }
+   .title { top: 15%; width: 62%; font-size: clamp(2.7rem, 12.5vw, 3.8rem); line-height: 0.87; }
+   .intro { right: var(--side); max-width: none; bottom: calc(2rem + env(safe-area-inset-bottom, 0px)); }
+   .intro p { max-width: 20rem; font-size: 0.98rem; }
+   .tagline { top: 55%; bottom: auto; color: #fff; text-shadow: 0 1px 12px rgba(15, 23, 32, 0.55); }
 }
 @media (max-width: 767px) and (orientation: landscape) {
   .base-layer { background-image: url("/images/Base_image_desktop.png"); }

@@ -63,75 +63,75 @@ export default function ProjectsSection() {
           <div className="h-1 w-24 bg-gradient-to-r from-[var(--line)] to-transparent mx-auto rounded-full" />
         </div>
         
-        <div className="space-y-16">
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className={`relative group grid lg:grid-cols-[300px_1fr] gap-12 p-8 rounded-3xl bg-white/80 backdrop-blur-sm border border-[var(--line)] shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-xl ${
-                project.featured
-                  ? "border-2 border-[var(--line)]/50"
-                  : ""
-              }`}
-            >
-              {/* Image */}
-              <div className={`relative ${project.imageClass} rounded-2xl overflow-hidden bg-[var(--paper)]`}>
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--paper)]/80 to-transparent pointer-events-none" />
-              </div>
-              
-              {/* Content */}
-              <div className="space-y-6">
-                <h3 className="text-2xl font-light text-[var(--ink)] mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-[var(--ink)]/70 leading-relaxed mb-4">
-                  {project.description}
-                </p>
-                
-                {/* Tags */}
-                <div className="flex flex-wrap gap-3 mb-6">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 rounded-full text-xs font-medium bg-[var(--line)]/20 text-[var(--ink)]/80 border border-[var(--line)]/30"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+<div className="space-y-16">
+            {projects.map((project) => (
+              <div
+                key={project.id}
+                className={`relative group grid grid-cols-1 gap-8 p-6 sm:p-8 rounded-3xl bg-white/80 backdrop-blur-sm border border-[var(--line)] shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-xl ${
+                  project.featured
+                    ? "border-2 border-[var(--line)]/50"
+                    : ""
+                }`}
+              >
+                {/* Image */}
+                <div className={`relative ${project.imageClass} rounded-2xl overflow-hidden bg-[var(--paper)]`}>
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--paper)]/80 to-transparent pointer-events-none" />
                 </div>
                 
-                {/* Links */}
-                <div className="flex gap-4">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="pill flex-1 text-center"
-                    >
-                      GitHub Source
-                    </a>
-                  )}
-                  {project.live && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="pill flex-1 text-center border border-[var(--ink)]/30 hover:bg-[var(--ink)]/5"
-                    >
-                      Live Demo
-                    </a>
-                  )}
+                {/* Content */}
+                <div className="space-y-5">
+                  <h3 className="text-xl sm:text-2xl font-light text-[var(--ink)]">
+                    {project.title}
+                  </h3>
+                  <p className="text-[var(--ink)]/70 leading-relaxed text-sm sm:text-base">
+                    {project.description}
+                  </p>
+                  
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-1 rounded-full text-xs font-medium bg-[var(--line)]/20 text-[var(--ink)]/80 border border-[var(--line)]/30"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  {/* Links */}
+                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="pill flex-1 text-center py-3"
+                      >
+                        GitHub Source
+                      </a>
+                    )}
+                    {project.live && (
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="pill flex-1 text-center py-3 border border-[var(--ink)]/30 hover:bg-[var(--ink)]/5"
+                      >
+                        Live Demo
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
       </div>
     </section>
   );

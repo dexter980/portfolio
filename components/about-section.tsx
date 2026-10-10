@@ -86,7 +86,7 @@ export default function AboutSection() {
           <div className="lg:col-span-5">
             <div className="relative group">
               {/* Main profile card with glass effect */}
-              <div className="relative p-8 rounded-3xl bg-white/80 backdrop-blur-sm border border-[var(--line)] shadow-lg hover:shadow-xl transition-all duration-500 group-hover:-translate-y-2">
+              <div className="relative p-6 sm:p-8 rounded-3xl bg-white/80 backdrop-blur-sm border border-[var(--line)] shadow-lg hover:shadow-xl transition-all duration-500 group-hover:-translate-y-2">
                 {/* Decorative elements */}
                 <div className="absolute -top-2 -right-2 w-20 h-20 bg-[var(--line)] rounded-full blur-2xl opacity-30" />
                 <div className="absolute -bottom-2 -left-2 w-16 h-16 bg-[var(--line)] rounded-full blur-xl opacity-40" />

@@ -94,14 +94,14 @@ export default function ExperimentsSection() {
         </div>
         
         {/* Filter buttons */}
-        <div className="flex justify-center gap-4 mb-16">
+        <div className="flex flex-wrap justify-center gap-2 mb-10 px-2">
           {filters.map((filter) => (
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 ${
                 activeFilter === filter
-                  ? "bg-[var(--ink)] text-white shadow-lg scale-105"
+                  ? "bg-[var(--ink)] text-white shadow-lg"
                   : "bg-white/80 backdrop-blur-sm border border-[var(--line)] text-[var(--ink)]/70 hover:bg-white hover:shadow-md"
               }`}
             >
@@ -110,39 +110,39 @@ export default function ExperimentsSection() {
           ))}
         </div>
         
-        {/* Experiments grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+{/* Experiments grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {filteredExperiments.map((exp) => (
             <div
               key={exp.id}
-              className="group relative p-8 rounded-3xl bg-white/80 backdrop-blur-sm border border-[var(--line)] shadow-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:border-[var(--line)]/60"
+              className="group relative p-6 rounded-2xl bg-white/80 backdrop-blur-sm border border-[var(--line)] shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:border-[var(--line)]/60"
             >
-{/* Status badge */}
-              <div className="absolute top-4 right-4">
-                <span className={`px-3 py-1 rounded-full text-xs font-medium border ${statusColor(exp.status)}`}>
+              {/* Status badge */}
+              <div className="absolute top-3 right-3">
+                <span className={`px-2.5 py-1 rounded-full text-xs font-medium border ${statusColor(exp.status)}`}>
                   {exp.status}
                 </span>
               </div>
               
               {/* Icon */}
-              <div className="text-5xl mb-6 transition-transform duration-300 group-hover:scale-110">
+              <div className="text-4xl mb-4 transition-transform duration-300 group-hover:scale-110">
                 {statusIcon(exp.status)}
               </div>
               
               {/* Content */}
-              <h3 className="text-2xl font-light text-[var(--ink)] mb-3">
+              <h3 className="text-xl font-light text-[var(--ink)] mb-2">
                 {exp.title}
               </h3>
-              <p className="text-[var(--ink)]/70 text-sm leading-relaxed mb-6">
+              <p className="text-[var(--ink)]/70 text-sm leading-relaxed mb-4">
                 {exp.description}
               </p>
               
               {/* Tags */}
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5">
                 {exp.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-1 rounded-md text-xs font-medium bg-[var(--paper)] text-[var(--ink)]/70 border border-[var(--line)]/40"
+                    className="px-2 py-1 rounded text-xs font-medium bg-[var(--paper)] text-[var(--ink)]/70 border border-[var(--line)]/40"
                   >
                     {tag}
                   </span>
