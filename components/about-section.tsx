@@ -81,7 +81,7 @@ export default function AboutSection() {
           <div className="h-1 w-24 bg-gradient-to-r from-[var(--line)] to-transparent mx-auto rounded-full" />
         </div>
         
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Profile Section */}
           <div className="lg:col-span-5">
             <div className="relative group">

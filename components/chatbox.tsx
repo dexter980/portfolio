@@ -124,7 +124,7 @@ export default function Chatbox({ open, onClose }: { open: boolean; onClose?: ()
   };
 
   return (
-    <div className="fixed bottom-4 right-4 left-4 sm:right-6 sm:left-auto sm:w-[400px] z-50 max-h-[640px] flex flex-col rounded-2xl bg-white/95 backdrop-blur-md border border-[var(--line)] shadow-2xl overflow-hidden">
+    <div className="fixed bottom-4 right-4 left-4 sm:right-6 sm:left-auto sm:w-[400px] z-50 max-h-[calc(100vh-var(--top,0px)-2rem)] sm:max-h-[640px] flex flex-col rounded-2xl bg-white/95 backdrop-blur-md border border-[var(--line)] shadow-2xl overflow-hidden">
       <div className="flex items-center gap-3 px-4 py-3 border-b border-[var(--line)] bg-white/80">
         <div className="w-9 h-9 rounded-full bg-[var(--ink)] flex items-center justify-center text-white font-semibold text-sm">AP</div>
         <div className="flex-1 min-w-0">
@@ -133,7 +133,7 @@ export default function Chatbox({ open, onClose }: { open: boolean; onClose?: ()
         </div>
         <button onClick={() => onClose?.()} className="text-[var(--ink)]/60 hover:text-[var(--ink)] text-xs font-medium px-2 py-1 rounded-lg hover:bg-[var(--paper)] transition-colors">Close</button>
       </div>
-      <div className="flex-1 overflow-y-auto p-4 space-y-3 min-h-[320px] max-h-[460px]">
+      <div className="flex-1 overflow-y-auto p-4 space-y-3 min-h-[320px] max-h-[calc(100vh-12rem-var(--top,0px))]">
         {messages.map((m, i) => (
           <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
             <div className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed shadow-sm ${m.role === "user" ? "bg-[var(--ink)] text-white rounded-br-sm" : "bg-[var(--paper)] text-[var(--ink)] border border-[var(--line)] rounded-bl-sm"}`}>
