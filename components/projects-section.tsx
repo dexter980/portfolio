@@ -67,7 +67,7 @@ export default function ProjectsSection() {
             {projects.map((project) => (
               <div
                 key={project.id}
-                className={`relative group grid grid-cols-1 gap-8 p-6 sm:p-8 rounded-3xl bg-white/80 backdrop-blur-sm border border-[var(--line)] shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-xl ${
+                className={`relative group grid grid-cols-1 gap-8 lg:grid-cols-[300px_1fr] gap-12 p-8 rounded-3xl bg-white/80 backdrop-blur-sm border border-[var(--line)] shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-xl ${
                   project.featured
                     ? "border-2 border-[var(--line)]/50"
                     : ""
@@ -85,20 +85,20 @@ export default function ProjectsSection() {
                 </div>
                 
                 {/* Content */}
-                <div className="space-y-5">
-                  <h3 className="text-xl sm:text-2xl font-light text-[var(--ink)]">
+                <div className="space-y-6">
+                  <h3 className="text-2xl font-light text-[var(--ink)] mb-2">
                     {project.title}
                   </h3>
-                  <p className="text-[var(--ink)]/70 leading-relaxed text-sm sm:text-base">
+                  <p className="text-[var(--ink)]/70 leading-relaxed mb-4">
                     {project.description}
                   </p>
                   
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-3 mb-6">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2.5 py-1 rounded-full text-xs font-medium bg-[var(--line)]/20 text-[var(--ink)]/80 border border-[var(--line)]/30"
+                        className="px-3 py-1 rounded-full text-xs font-medium bg-[var(--line)]/20 text-[var(--ink)]/80 border border-[var(--line)]/30"
                       >
                         {tag}
                       </span>
@@ -106,13 +106,13 @@ export default function ProjectsSection() {
                   </div>
                   
                   {/* Links */}
-                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                  <div className="flex gap-4">
                     {project.github && (
                       <a
                         href={project.github}
                         target="_blank"
                         rel="noreferrer"
-                        className="pill flex-1 text-center py-3"
+                        className="pill flex-1 text-center"
                       >
                         GitHub Source
                       </a>
@@ -122,7 +122,7 @@ export default function ProjectsSection() {
                         href={project.live}
                         target="_blank"
                         rel="noreferrer"
-                        className="pill flex-1 text-center py-3 border border-[var(--ink)]/30 hover:bg-[var(--ink)]/5"
+                        className="pill flex-1 text-center border border-[var(--ink)]/30 hover:bg-[var(--ink)]/5"
                       >
                         Live Demo
                       </a>
