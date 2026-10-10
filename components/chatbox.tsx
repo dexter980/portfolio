@@ -73,7 +73,7 @@ export default function Chatbox({ open, onClose }: { open: boolean; onClose?: ()
   useEffect(() => {
     if (!open) return;
     const handleScroll = () => {
-      if (window.scrollY > 0) {
+      if (window.scrollY > 0 && window.innerWidth >= 768) {
         onClose?.();
       }
     };

@@ -35,8 +35,13 @@ html { scroll-behavior: smooth; }
 
 .hero {
   position: relative; isolation: isolate; overflow: hidden;
-  height: 100dvh; min-height: 30rem; min-width: 320px; touch-action: none;
+  height: 100dvh; min-height: 30rem; min-width: 320px;
   --reveal-x: -999px; --reveal-y: -999px; --reveal-radius: 0px;
+}
+
+/* Desktop: enable touch-action:none for pointer tracking; Mobile: allow scrolling */
+@media (min-width: 768px) {
+  .hero { touch-action: none; }
 }
 
 /* Layers 1 + 2: aligned portrait pair */
