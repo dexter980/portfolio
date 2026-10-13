@@ -80,16 +80,21 @@ export default function Chatbox({ open, onClose }: { open: boolean; onClose?: ()
     return () => vp.removeEventListener("resize", handleResize);
   }, [open]);
 
+  const onCloseRef = useRef(onClose);
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
+
   useEffect(() => {
     if (!open) return;
     const handleScroll = () => {
-      if (window.scrollY > 0 && window.innerWidth >= 768) {
-        onClose?.();
+      if (window.innerWidth >= 768) {
+        onCloseRef.current?.();
       }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [open, onClose]);
+  }, [open]);
 
   if (!open) {
     return null;
