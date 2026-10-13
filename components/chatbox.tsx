@@ -64,11 +64,21 @@ export default function Chatbox({ open, onClose }: { open: boolean; onClose?: ()
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => { if (open && inputRef.current) inputRef.current.focus(); }, [open]);
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages]);
+
+  useEffect(() => {
+    if (!open) return;
+    const vp = window.visualViewport;
+    if (!vp) return;
+    const handleResize = () => setKeyboardHeight(window.innerHeight - vp.height);
+    vp.addEventListener("resize", handleResize);
+    return () => vp.removeEventListener("resize", handleResize);
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -123,31 +133,31 @@ export default function Chatbox({ open, onClose }: { open: boolean; onClose?: ()
     }
   };
 
-  return (
-    <div className="fixed bottom-4 right-4 left-4 sm:right-6 sm:left-auto sm:w-[400px] z-50 max-h-[calc(100vh-var(--top,0px)-2rem)] sm:max-h-[640px] flex flex-col rounded-2xl bg-white/95 backdrop-blur-md border border-[var(--line)] shadow-2xl overflow-hidden">
-      <div className="flex items-center gap-3 px-4 py-3 border-b border-[var(--line)] bg-white/80">
-        <div className="w-9 h-9 rounded-full bg-[var(--ink)] flex items-center justify-center text-white font-semibold text-sm">AP</div>
-        <div className="flex-1 min-w-0">
-          <div className="text-sm font-medium text-[var(--ink)]">Aayush Patil</div>
-          <div className="text-xs text-green-600">Online</div>
-        </div>
-        <button onClick={() => onClose?.()} className="text-[var(--ink)]/60 hover:text-[var(--ink)] text-xs font-medium px-2 py-1 rounded-lg hover:bg-[var(--paper)] transition-colors">Close</button>
-      </div>
-      <div className="flex-1 overflow-y-auto p-4 space-y-3 min-h-[320px] max-h-[calc(100vh-12rem-var(--top,0px))]">
-        {messages.map((m, i) => (
-          <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
-            <div className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed shadow-sm ${m.role === "user" ? "bg-[var(--ink)] text-white rounded-br-sm" : "bg-[var(--paper)] text-[var(--ink)] border border-[var(--line)] rounded-bl-sm"}`}>
-              {m.text}
-            </div>
-          </div>
-        ))}
-        {loading && <div className="text-xs text-[var(--ink)]/50 animate-pulse">Aayush is typing...</div>}
-        <div ref={bottomRef} />
-      </div>
-      <div className="flex gap-2 p-3 border-t border-[var(--line)] bg-white/80">
-        <input ref={inputRef} value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleSend()} placeholder="Ask me anything..." className="flex-1 px-3 py-2.5 rounded-xl bg-[var(--paper)] border border-[var(--line)] text-sm focus:outline-none focus:border-[var(--ink)] transition-colors" />
-        <button onClick={handleSend} className="px-4 py-2.5 bg-[var(--ink)] text-white rounded-xl text-sm font-medium hover:bg-[var(--ink)]/90 transition-colors">Send</button>
-      </div>
-    </div>
-  );
+   return (
+     <div className="fixed bottom-4 right-4 left-4 sm:right-6 sm:left-auto sm:w-[400px] z-50 max-h-[calc(100vh-var(--top,0px)-2rem-${keyboardHeight}px)] sm:max-h-[640px] flex flex-col rounded-2xl bg-white/95 backdrop-blur-md border border-[var(--line)] shadow-2xl overflow-hidden">
+       <div className="flex items-center gap-3 px-4 py-3 border-b border-[var(--line)] bg-white/80">
+         <div className="w-9 h-9 rounded-full bg-[var(--ink)] flex items-center justify-center text-white font-semibold text-sm">AP</div>
+         <div className="flex-1 min-w-0">
+           <div className="text-sm font-medium text-[var(--ink)]">Aayush Patil</div>
+           <div className="text-xs text-green-600">Online</div>
+         </div>
+         <button onClick={() => onClose?.()} className="text-[var(--ink)]/60 hover:text-[var(--ink)] text-xs font-medium px-2 py-1 rounded-lg hover:bg-[var(--paper)] transition-colors">Close</button>
+       </div>
+       <div className="flex-1 overflow-y-auto p-4 space-y-3 min-h-[320px] max-h-[calc(100vh-12rem-var(--top,0px))]">
+         {messages.map((m, i) => (
+           <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
+             <div className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed shadow-sm ${m.role === "user" ? "bg-[var(--ink)] text-white rounded-br-sm" : "bg-[var(--paper)] text-[var(--ink)] border border-[var(--line)] rounded-bl-sm"}`}>
+               {m.text}
+             </div>
+           </div>
+         ))}
+         {loading && <div className="text-xs text-[var(--ink)]/50 animate-pulse">Aayush is typing...</div>}
+         <div ref={bottomRef} />
+       </div>
+       <div className="flex gap-2 p-3 border-t border-[var(--line)] bg-white/80">
+         <input ref={inputRef} value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleSend()} placeholder="Ask me anything..." className="flex-1 px-3 py-2.5 rounded-xl bg-[var(--paper)] border border-[var(--line)] text-sm focus:outline-none focus:border-[var(--ink)] transition-colors" />
+         <button onClick={handleSend} className="px-4 py-2.5 bg-[var(--ink)] text-white rounded-xl text-sm font-medium hover:bg-[var(--ink)]/90 transition-colors">Send</button>
+       </div>
+     </div>
+   );
 }
