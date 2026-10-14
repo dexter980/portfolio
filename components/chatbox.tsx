@@ -81,14 +81,16 @@ export default function Chatbox({ open, onClose }: { open: boolean; onClose?: ()
   }, [open]);
 
   const onCloseRef = useRef(onClose);
+  const initialScrollY = useRef(0);
   useEffect(() => {
     onCloseRef.current = onClose;
   }, [onClose]);
 
   useEffect(() => {
     if (!open) return;
+    initialScrollY.current = window.scrollY;
     const handleScroll = () => {
-      if (window.innerWidth >= 768) {
+      if (window.innerWidth >= 768 && Math.abs(window.scrollY - initialScrollY.current) > 10) {
         onCloseRef.current?.();
       }
     };
