@@ -68,11 +68,11 @@ export async function POST(req: NextRequest) {
 if (!res.ok) {
       const err = await res.json().catch(() => ({}));
       console.error("Gemini API error:", err);
-      
-      // Check for quota exceeded
-      if (res.status === 429 || err.error?.code === 429 || err.error?.message?.includes("quota")) {
+
+      // Check for quota exceeded or service unavailable
+      if (res.status === 429 || res.status === 503 || err.error?.code === 429 || err.error?.message?.includes("quota") || err.error?.message?.includes("high demand")) {
         return NextResponse.json(
-          { 
+          {
             error: "QUOTA_EXCEEDED",
             message: "I've hit my daily API limit! You can reach me directly at patilaayush145@gmail.com or connect on GitHub at github.com/dexter980. I'd love to continue our conversation there! 🙌"
           },
